@@ -1,0 +1,173 @@
+{
+    "loja": {
+        "nome": "Docelice",
+        "whatsapp": "5583996355213",
+        "telefoneExibicao": "(83) 99635-5213",
+        "instagram": "docelicejp",
+        "sinalPercentual": 50,
+        "antecedenciaMinimaDias": 2,
+        "horarioRetirada": { "inicio": "08:00", "fim": "18:00" }
+    },
+    "docinhos": {
+        "peso": "18g",
+        "minimoTotal": 50,
+        "passo": 25,
+        "maxCoresForminha": 3,
+        "coresForminha": [
+            { "nome": "Branca", "hex": "#FFFFFF" },
+            { "nome": "Rosa", "hex": "#F6C9D3" },
+            { "nome": "Pink", "hex": "#E05A8A" },
+            { "nome": "Lilás", "hex": "#C8A2D8" },
+            { "nome": "Azul bebê", "hex": "#A9CDEB" },
+            { "nome": "Dourada", "hex": "#C9A227" }
+        ],
+        "categorias": [
+            {
+                "id": "tradicionais",
+                "nome": "Docinhos tradicionais",
+                "descricao": "Os clássicos de festa, enroladinhos à mão.",
+                "preco": 1.7,
+                "imagem": null,
+                "sugestaoObservacao": "Alguma preferência?",
+                "sabores": [
+                    "Brigadeiro tradicional",
+                    "Brigadeiro dragê",
+                    "Ninho dragê",
+                    "Dois amores",
+                    "Beijinho",
+                    "Paçoca"
+                ]
+            },
+            {
+                "id": "especiais",
+                "nome": "Docinhos especiais",
+                "descricao": "Sabores gourmet e o ninho personalizado com carimbo.",
+                "preco": 1.9,
+                "imagem": null,
+                "sugestaoObservacao": "Ninho personalizado: cor e tema do carimbo",
+                "sabores": [
+                    "Brigadeiro gourmet",
+                    "Ninho personalizado",
+                    "Ninho com nutella",
+                    "Surpresa de uva",
+                    "Churros",
+                    "Ferrero",
+                    "Café"
+                ]
+            }
+        ]
+    },
+    "tortas": {
+        "nome": "Tortas",
+        "descricao": "Naked cake ou chantininho. Monte do seu jeito: tamanho, massa, 2 recheios e acabamento.",
+        "imagem": null,
+        "quantidadeRecheios": 2,
+        "regraPrecoMisto": "especial",
+        "tamanhos": [
+            {
+                "id": "aro14",
+                "nome": "Aro 14",
+                "rendimento": "8 a 10 pessoas",
+                "precoTradicional": 90,
+                "precoEspecial": 100
+            },
+            {
+                "id": "aro20",
+                "nome": "Aro 20",
+                "rendimento": "15 a 20 pessoas",
+                "precoTradicional": 170,
+                "precoEspecial": 185
+            },
+            {
+                "id": "aro25",
+                "nome": "Aro 25",
+                "rendimento": "25 a 30 pessoas",
+                "precoTradicional": 250,
+                "precoEspecial": 270
+            },
+            {
+                "id": "aro30",
+                "nome": "Aro 30",
+                "rendimento": "a confirmar",
+                "precoTradicional": null,
+                "precoEspecial": null
+            }
+        ],
+        "massas": ["Baunilha", "Chocolate"],
+        "recheiosTradicionais": [
+            "Brigadeiro",
+            "Ninho",
+            "Dois amores",
+            "Prestígio",
+            "Paçoca com brigadeiro"
+        ],
+        "recheiosEspeciais": [
+            "Brigadeiro com maracujá",
+            "Brigadeiro com morango",
+            "Ninho com morango",
+            "Ninho com nutella",
+            "Abacaxi com coco",
+            "Surpresa de uva"
+        ],
+        "acabamentos": [
+            { "nome": "Naked cake", "acrescimo": 0 },
+            { "nome": "Chantininho", "acrescimo": 0 }
+        ]
+    },
+    "vitrine": [
+        {
+            "aba": "docinhos",
+            "imagem": null,
+            "titulo": "Brigadeiros",
+            "legenda": "Clássicos de festa · 18g"
+        },
+        {
+            "aba": "docinhos",
+            "imagem": null,
+            "titulo": "Docinhos gourmet",
+            "legenda": "Sabores especiais"
+        },
+        {
+            "aba": "docinhos",
+            "imagem": null,
+            "titulo": "Ninho personalizado",
+            "legenda": "Cor e carimbo temático"
+        },
+        { "aba": "tortas", "imagem": null, "titulo": "Naked cake", "legenda": "Vários tamanhos" },
+        {
+            "aba": "tortas",
+            "imagem": null,
+            "titulo": "Ninho com morango",
+            "legenda": "Recheio especial"
+        },
+        {
+            "aba": "tortas",
+            "imagem": null,
+            "titulo": "Chantininho",
+            "legenda": "Acabamento delicado"
+        }
+    ],
+    "infos": [
+        {
+            "titulo": "Docinhos",
+            "texto": "Os docinhos possuem 18g. Pedido mínimo de 50 unidades, com variação de sabor a cada 25 unidades."
+        },
+        {
+            "titulo": "Forminha",
+            "texto": "Os docinhos são entregues na forminha quatro pétalas, com a cor escolhida no ato da encomenda."
+        },
+        {
+            "titulo": "Ninho personalizado",
+            "texto": "Você pode escolher a cor e o carimbo temático (consulte os temas disponíveis)."
+        },
+        {
+            "titulo": "Tortas",
+            "texto": "Massa de baunilha ou de chocolate. Aro 14 serve de 8 a 10 pessoas, aro 20 de 15 a 20 pessoas e aro 25 de 25 a 30 pessoas."
+        },
+        { "titulo": "Pagamento", "texto": "50% no ato da encomenda e os outros 50% na entrega." },
+        {
+            "titulo": "Retirada",
+            "texto": "Orientamos que a retirada de docinhos e tortas seja feita de carro."
+        }
+    ]
+}
