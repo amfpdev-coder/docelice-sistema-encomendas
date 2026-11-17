@@ -2,6 +2,7 @@
  * Tipos e regras do pedido da Docelice.
  * Este arquivo não mexe na tela: só regras de negócio, fáceis de testar.
  */
+import { z } from 'zod';
 
 /** Etapas pelas quais um pedido passa, na ordem. */
 export const STATUS_PEDIDO = [
@@ -17,14 +18,20 @@ export const STATUS_PEDIDO = [
 /** Um dos valores de STATUS_PEDIDO: 'novo' | 'confirmado' | ... */
 export type StatusPedido = (typeof STATUS_PEDIDO)[number];
 
-/** Um item do pedido: um lote de docinhos ou uma torta. */
-export interface ItemPedido {
-    id: string;
-    titulo: string;
-    detalhes: string[];
+/**
+ * Um item do pedido: um lote de docinhos ou uma torta.
+ * O esquema também protege o pedido salvo no navegador: se o formato mudar
+ * numa versão nova do site, itens antigos e inválidos são descartados.
+ */
+export const ItemPedidoSchema = z.object({
+    id: z.string().min(1),
+    titulo: z.string().min(1),
+    detalhes: z.array(z.string()),
     /** Valor em centavos. `null` quando o preço ainda é "a confirmar" (ex.: aro 30). */
-    valorCentavos: number | null;
-}
+    valorCentavos: z.number().int().min(0).nullable(),
+});
+
+export type ItemPedido = z.infer<typeof ItemPedidoSchema>;
 
 export interface Totais {
     totalCentavos: number;
