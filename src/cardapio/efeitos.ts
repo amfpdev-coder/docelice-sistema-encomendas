@@ -1,6 +1,6 @@
 /**
  * Etapa 10.6: efeitos visuais.
- * - abertura: tela de boas-vindas só na primeira visita (?abertura no link força mostrar)
+ * - abertura: tela de boas-vindas sempre que a página é aberta ou recarregada
  * - vitrine: carrossel em 3D (coverflow) que passa sozinho e desliza com o dedo
  * - inclinação 3D das fotos, acompanhando o mouse ou o giroscópio do celular
  * - itens entrando com movimento conforme a página rola
@@ -11,33 +11,12 @@ import { movimentoReduzido } from '../servicos/navegador';
 import { escapar } from './dom';
 import { imagem } from './imagens';
 
-const CHAVE_ABERTURA = 'docelice:abertura-vista';
-
 // ===== Abertura =====
 
-function aberturaJaVista(): boolean {
-    try {
-        return window.localStorage.getItem(CHAVE_ABERTURA) === 'sim';
-    } catch {
-        return false;
-    }
-}
-
-function marcarAberturaVista(): void {
-    try {
-        window.localStorage.setItem(CHAVE_ABERTURA, 'sim');
-    } catch {
-        // sem armazenamento: a abertura aparece de novo na próxima visita, e tudo bem
-    }
-}
-
-/** Mostra a abertura na primeira visita. Chama `aoFechar` quando a pessoa entra no cardápio. */
+/** Mostra a abertura sempre que a página carrega. Chama `aoFechar` quando a pessoa entra no cardápio. */
 export function prepararAbertura(aoFechar: () => void): void {
     const abertura = document.querySelector<HTMLElement>('#abertura');
     if (!abertura) return;
-
-    const forcar = new URLSearchParams(window.location.search).has('abertura');
-    if (!forcar && aberturaJaVista()) return;
 
     // Enquanto a abertura está na tela, o resto da página fica "desligado" (teclado e leitor de tela)
     const fundo = document.querySelectorAll<HTMLElement>(
@@ -50,7 +29,6 @@ export function prepararAbertura(aoFechar: () => void): void {
     const botao = abertura.querySelector<HTMLButtonElement>('#abertura-entrar');
     botao?.focus({ preventScroll: true });
     botao?.addEventListener('click', () => {
-        marcarAberturaVista();
         abertura.classList.add('saindo');
         fundo.forEach((el) => (el.inert = false));
         document.body.classList.remove('com-abertura');
