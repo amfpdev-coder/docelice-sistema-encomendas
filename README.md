@@ -92,16 +92,21 @@ public/
   cardapio.json        produtos, preços e regras (editável sem mexer no código)
   img/                 logo e fotos
 src/
-  dominio/             regras de negócio: dinheiro, pedido, contrato do cardápio
-  servicos/            comunicação com o mundo de fora (carregar o cardápio)
-  main.ts              ponto de entrada
+  dominio/             regras de negócio, sem tela: dinheiro, pedido, carrinho, docinhos,
+                       tortas, mensagem do WhatsApp, datas e o contrato do cardápio (Zod)
+  cardapio/            a tela: página, montadores, sacola, barra do pedido e efeitos
+  estilos/             CSS em camadas: tokens → base → cardápio → painéis → efeitos
+  servicos/            comunicação com o mundo de fora (cardápio, armazenamento do navegador)
+  main.ts              ponto de entrada: liga tudo
 tests/                 testes das regras de negócio e do contrato de dados
 ```
 
 ## Roteiro
 
 - [x] **Fase 0** — fundação: Vite + TypeScript strict, qualidade, CI e deploy
-- [ ] **Fase 1** — cardápio completo: montadores, pedido, mensagem, comanda para imprimir
+- [x] Cardápio reconstruído em TypeScript: montadores de docinhos e tortas, pedido salvo no
+      navegador, mensagem pronta no WhatsApp, vitrine 3D e tela de abertura
+- [ ] **Fase 1** — cardápio completo: telefone e número do pedido, calendário, comanda para imprimir
 - [ ] **Fase 2** — sistema: Firebase, painel da loja em React, status em tempo real
 - [ ] **Fase 2.5** — dados: pipeline com Python + DuckDB, métricas e dados sintéticos
 - [ ] **Fase 3** — lançamento
