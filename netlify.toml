@@ -1,0 +1,14 @@
+# Como o Netlify publica o site
+[build]
+    command = "npm run build"   # gera a versão otimizada
+    publish = "dist"            # pasta que vai para o ar
+
+[build.environment]
+    NODE_VERSION = "22"         # a mesma versão do Node que você usa
+
+# O cardapio.json nunca fica preso no cache do celular:
+# mudou um preço, a cliente vê o preço novo na próxima visita.
+[[headers]]
+    for = "/cardapio.json"
+    [headers.values]
+        Cache-Control = "no-cache"
