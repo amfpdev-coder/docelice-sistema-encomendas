@@ -76,14 +76,14 @@ npm install
 npm run dev        # servidor local em http://localhost:5173
 ```
 
-| Comando             | O que faz                                    |
-| ------------------- | -------------------------------------------- |
-| `npm run dev`       | servidor local com atualização automática    |
-| `npm test`          | roda os testes (Vitest)                      |
-| `npm run typecheck` | confere os tipos (TypeScript)                |
-| `npm run lint`      | procura problemas no código (ESLint)         |
-| `npm run format`    | formata o código (Prettier)                  |
-| `npm run build`     | gera a versão otimizada na pasta `dist/`     |
+| Comando             | O que faz                                 |
+| ------------------- | ----------------------------------------- |
+| `npm run dev`       | servidor local com atualização automática |
+| `npm test`          | roda os testes (Vitest)                   |
+| `npm run typecheck` | confere os tipos (TypeScript)             |
+| `npm run lint`      | procura problemas no código (ESLint)      |
+| `npm run format`    | formata o código (Prettier)               |
+| `npm run build`     | gera a versão otimizada na pasta `dist/`  |
 
 ## Estrutura
 
