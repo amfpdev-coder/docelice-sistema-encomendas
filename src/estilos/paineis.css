@@ -1,0 +1,761 @@
+/* Painéis: barra do pedido, montadores (bottom sheet), sacola e aviso */
+
+/* ===== Botões extras ===== */
+
+.botao:disabled {
+    background: #ebdde2;
+    border-color: #ebdde2;
+    color: #a68796;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.botao--bloco {
+    width: 100%;
+    min-height: 54px;
+    font-size: 1.02rem;
+}
+
+/* "Adicionar ............ R$ 85,00" */
+.botao--adicionar {
+    width: 100%;
+    min-height: 54px;
+    justify-content: space-between;
+    font-size: 1rem;
+}
+
+.botao--adicionar span:only-child,
+.botao--adicionar span:empty {
+    margin: 0 auto;
+}
+
+.link {
+    min-height: var(--toque);
+    padding: 0 4px;
+    border: 0;
+    background: none;
+    color: var(--magenta);
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+.link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.link--bloco {
+    display: block;
+    width: 100%;
+    margin: 4px 0 8px;
+    text-align: center;
+}
+
+/* ===== Barra do pedido ===== */
+
+body.com-pedido .rodape {
+    padding-bottom: 100px; /* para a barra não cobrir o rodapé */
+}
+
+.barra-pedido {
+    position: fixed;
+    z-index: 30;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: var(--largura);
+    margin: 0 auto;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: linear-gradient(to top, #fff 60%, rgba(255, 255, 255, 0));
+    animation: barra-sobe 0.35s var(--mola);
+}
+
+.barra {
+    width: 100%;
+    min-height: 56px;
+    padding: 0 18px 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 0;
+    border-radius: var(--raio);
+    background: var(--magenta);
+    color: #fff;
+    font-weight: 800;
+    box-shadow: var(--sombra-forte);
+}
+
+.barra:hover {
+    background: var(--magenta-escuro);
+}
+
+.barra__icone {
+    position: relative;
+}
+
+.barra__icone svg {
+    width: 26px;
+    height: 26px;
+}
+
+.barra__qtd {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    min-width: 19px;
+    height: 19px;
+    padding: 0 5px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--magenta);
+    font-size: 0.72rem;
+    font-weight: 900;
+}
+
+.barra__texto {
+    flex: 1;
+    text-align: center;
+}
+
+@keyframes barra-sobe {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* ===== Painel que sobe de baixo (bottom sheet) ===== */
+
+body:has(dialog[open]) {
+    overflow: hidden;
+}
+
+.sheet {
+    position: fixed;
+    inset: auto 0 0 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: var(--largura);
+    height: 94vh;
+    height: 94dvh;
+    max-height: 94dvh;
+    padding: 0;
+    border: 0;
+    border-radius: 24px 24px 0 0;
+    background: var(--fundo);
+    color: var(--texto);
+    overflow: hidden;
+}
+
+.sheet[open] {
+    display: flex;
+    flex-direction: column;
+    animation: sobe-painel 0.32s var(--mola);
+}
+
+.sheet::backdrop {
+    background: rgba(58, 26, 43, 0.45);
+}
+
+@keyframes sobe-painel {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.sheet__cabeca {
+    flex: none;
+    display: grid;
+    grid-template-columns: 56px 1fr 56px;
+    align-items: center;
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--divisor);
+}
+
+.sheet__cabeca h2 {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.sheet__cabeca .link {
+    justify-self: end;
+}
+
+.sheet__corpo {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.sheet__pe {
+    flex: none;
+    padding: 10px 16px calc(12px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--divisor);
+    background: var(--fundo);
+    box-shadow: 0 -8px 20px rgba(107, 18, 64, 0.06);
+}
+
+.sheet__status {
+    margin-bottom: 8px;
+    color: var(--texto-suave);
+    font-size: 0.82rem;
+    text-align: center;
+}
+
+.sheet__status:empty {
+    display: none;
+}
+
+.fechar {
+    width: var(--toque);
+    height: var(--toque);
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--magenta);
+}
+
+.fechar svg {
+    width: 24px;
+    height: 24px;
+}
+
+.fechar:hover {
+    background: var(--faixa);
+}
+
+.fechar--flutuante {
+    position: absolute;
+    z-index: 5;
+    top: 12px;
+    left: 12px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: var(--sombra);
+}
+
+.fechar--flutuante:hover {
+    background: #fff;
+}
+
+/* ===== Topo do produto no montador ===== */
+
+.produto-cabeca {
+    padding: 18px 16px 16px;
+}
+
+.produto-cabeca h2 {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.15;
+    color: var(--magenta);
+}
+
+.produto-cabeca p {
+    margin-top: 6px;
+    color: var(--texto-suave);
+    font-size: 0.92rem;
+}
+
+.produto-cabeca .produto-cabeca__preco {
+    margin-top: 10px;
+    color: var(--texto);
+    font-weight: 800;
+    font-size: 1.05rem;
+}
+
+.produto-cabeca__preco small {
+    color: var(--texto-suave);
+    font-weight: 600;
+    font-size: 0.82rem;
+}
+
+/* ===== Grupos de opções ===== */
+
+.grupo {
+    border-top: 8px solid var(--faixa);
+}
+
+/* A faixa do título fica presa no topo enquanto a pessoa rola as opções */
+.grupo__cabeca {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--faixa);
+}
+
+.grupo__cabeca h3 {
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.grupo__cabeca p {
+    margin-top: 1px;
+    color: var(--texto-suave);
+    font-size: 0.82rem;
+}
+
+.selo {
+    flex: none;
+    padding: 4px 9px;
+    border-radius: 6px;
+    background: var(--texto);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+}
+
+.selo--ok {
+    padding: 2px 9px;
+    background: var(--magenta);
+    font-size: 0.85rem;
+}
+
+.contador {
+    color: var(--texto-suave);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.grupo__sub {
+    padding: 12px 16px 4px;
+    color: var(--texto-suave);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.grupo__campo {
+    padding: 12px 16px 18px;
+}
+
+.grupo__campo textarea {
+    width: 100%;
+    min-height: 84px;
+    padding: 12px 14px;
+    border: 1.5px solid var(--linha);
+    border-radius: 12px;
+    resize: vertical;
+}
+
+.grupo__campo textarea:focus {
+    outline: none;
+    border-color: var(--magenta);
+    box-shadow: 0 0 0 3px var(--rosa-claro);
+}
+
+textarea::placeholder,
+input::placeholder {
+    color: #b597a6;
+}
+
+/* Linha de opção: texto à esquerda, marcador ou stepper à direita */
+.opcao {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 60px;
+    margin: 0 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--divisor);
+    cursor: pointer;
+}
+
+.grupo > .opcao:last-child {
+    border-bottom: 0;
+}
+
+div.opcao {
+    cursor: default;
+}
+
+.opcao__texto {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.opcao__texto > span {
+    font-weight: 600;
+}
+
+.opcao__texto small {
+    color: var(--texto-suave);
+    font-size: 0.8rem;
+}
+
+.opcao__preco {
+    color: var(--texto);
+    font-weight: 700;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.opcao:has(.marcador:disabled) {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.opcao:has(.marcador:checked) .opcao__texto > span {
+    color: var(--magenta);
+    font-weight: 800;
+}
+
+.tag-especial {
+    align-self: flex-start;
+    margin-top: 2px;
+    padding: 0 7px;
+    border-radius: 999px;
+    background: var(--rosa-claro);
+    color: var(--magenta) !important;
+    font-weight: 800;
+}
+
+.amostra {
+    flex: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(58, 26, 43, 0.2);
+}
+
+/* Marcador redondo (rádio) e quadrado (caixa), desenhados à mão */
+.marcador {
+    appearance: none;
+    flex: none;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    border: 2px solid #cdb3c0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition:
+        border-color 0.15s,
+        background 0.15s;
+}
+
+.marcador::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    transform: scale(0);
+    transition: transform 0.2s var(--mola);
+}
+
+.marcador:checked {
+    border-color: var(--magenta);
+    background: var(--magenta);
+}
+
+.marcador:checked::after {
+    transform: scale(1);
+}
+
+.marcador--caixa {
+    border-radius: 7px;
+}
+
+.marcador--caixa::after {
+    width: 12px;
+    height: 7px;
+    margin-top: -3px;
+    border: solid #fff;
+    border-width: 0 0 2.5px 2.5px;
+    border-radius: 0;
+    background: none;
+    transform: rotate(-45deg) scale(0);
+}
+
+.marcador--caixa:checked::after {
+    transform: rotate(-45deg) scale(1);
+}
+
+/* Stepper: só o "+" aparece até a pessoa escolher o sabor */
+.stepper {
+    flex: none;
+    display: flex;
+    align-items: center;
+    border-radius: 999px;
+    background: var(--faixa);
+}
+
+.stepper__btn {
+    width: var(--toque);
+    height: var(--toque);
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--magenta);
+}
+
+.stepper__btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.stepper__btn:hover {
+    background: var(--rosa-claro);
+}
+
+.stepper__valor {
+    min-width: 2.6ch;
+    text-align: center;
+    font-weight: 900;
+    color: var(--magenta);
+    font-variant-numeric: tabular-nums;
+}
+
+.stepper--vazio {
+    background: transparent;
+}
+
+.stepper--vazio .stepper__btn:not(.stepper__btn--mais),
+.stepper--vazio .stepper__valor {
+    display: none;
+}
+
+.stepper--vazio .stepper__btn--mais {
+    box-shadow: inset 0 0 0 2px var(--linha);
+}
+
+/* ===== Sacola ("Seu pedido") ===== */
+
+.loja-mini {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid var(--divisor);
+}
+
+.loja-mini__logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.loja-mini__texto {
+    display: flex;
+    flex-direction: column;
+}
+
+.loja-mini__texto strong {
+    font-weight: 900;
+}
+
+.loja-mini__texto small {
+    color: var(--texto-suave);
+    font-size: 0.82rem;
+}
+
+.itens {
+    list-style: none;
+    margin: 0;
+    padding: 0 16px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--divisor);
+}
+
+.item h3 {
+    font-size: 0.98rem;
+    font-weight: 800;
+}
+
+.item ul {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+}
+
+.item .link {
+    min-height: 36px;
+    margin-top: 2px;
+    padding: 0;
+    font-size: 0.85rem;
+}
+
+.item__valor {
+    white-space: nowrap;
+    font-weight: 800;
+}
+
+.vazio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 36px 16px;
+    text-align: center;
+    color: var(--texto-suave);
+}
+
+.vazio svg {
+    width: 48px;
+    height: 48px;
+    color: var(--rosa);
+}
+
+.vazio p {
+    font-weight: 800;
+    color: var(--texto);
+}
+
+.bloco {
+    padding: 16px;
+    border-top: 8px solid var(--faixa);
+}
+
+.bloco__titulo {
+    margin-bottom: 12px;
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.campo {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.campo > span {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+.campo input {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--linha);
+    border-radius: 12px;
+    background: #fff;
+}
+
+.campo input:focus {
+    outline: none;
+    border-color: var(--magenta);
+    box-shadow: 0 0 0 3px var(--rosa-claro);
+}
+
+.campo input:user-invalid {
+    border-color: #b3261e;
+}
+
+.campos-linha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.campo__ajuda {
+    color: var(--texto-suave);
+    font-size: 0.82rem;
+}
+
+.totais {
+    margin: 0 0 10px;
+}
+
+.totais div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 0;
+    color: var(--texto-suave);
+    font-size: 0.92rem;
+}
+
+.totais dd {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.totais .totais__total {
+    margin-top: 6px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--linha);
+    color: var(--texto);
+    font-size: 1.05rem;
+    font-weight: 900;
+}
+
+.totais .campo__ajuda {
+    margin-top: 8px;
+}
+
+.enviado {
+    display: grid;
+    gap: 12px;
+    margin: 0 16px 20px;
+    padding: 16px;
+    border-radius: var(--raio);
+    background: var(--faixa);
+    text-align: center;
+}
+
+/* ===== Aviso rápido ===== */
+
+.aviso-flutuante {
+    position: fixed;
+    z-index: 60;
+    left: 50%;
+    bottom: 92px;
+    max-width: calc(100% - 32px);
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--texto);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 12px);
+    transition:
+        opacity 0.2s,
+        transform 0.25s var(--mola);
+}
+
+.aviso-flutuante.visivel {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}

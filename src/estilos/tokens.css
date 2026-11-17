@@ -1,0 +1,35 @@
+/*
+ * Tokens de design da Docelice.
+ * Toda cor, fonte e medida do projeto sai daqui. O painel (React) vai usar os mesmos tokens,
+ * e é isso que faz as duas partes parecerem um sistema só.
+ */
+:root {
+    /* Cores da marca */
+    --magenta: #8a1a52;
+    --magenta-escuro: #6b1240;
+    --rosa: #e8b4be;
+    --rosa-claro: #f9e6ea;
+    --linha: #f3d3da;
+    --fundo: #ffffff;
+
+    /* Apoio para leitura */
+    --texto: #3a1a2b;
+    --texto-suave: #846575;
+    --faixa: #fbf3f5;
+    --divisor: #f1e4e8;
+
+    /* Tipografia */
+    --fonte-titulo: 'Prata', Georgia, serif;
+    --fonte-cursiva: 'Sacramento', cursive;
+    --fonte-ui: 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+    /* Medidas */
+    --largura: 480px;
+    --toque: 44px;
+    --raio: 16px;
+
+    /* Sombras e movimento */
+    --sombra: 0 6px 24px rgba(107, 18, 64, 0.1);
+    --sombra-forte: 0 14px 36px rgba(107, 18, 64, 0.22);
+    --mola: cubic-bezier(0.2, 0.8, 0.2, 1);
+}

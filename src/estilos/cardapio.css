@@ -1,0 +1,471 @@
+/* Cardápio: topo da loja, abas, seções, produtos e infos */
+
+/* ===== Topo da loja ===== */
+
+.loja,
+.abas,
+.conteudo,
+.rodape {
+    max-width: var(--largura);
+    margin: 0 auto;
+    background-color: var(--fundo);
+}
+
+/* Capa decorativa: rosa com pétalas, até a Docelice ter uma foto de capa */
+.loja__capa {
+    height: 150px;
+    background:
+        radial-gradient(circle at 18% 30%, rgba(255, 255, 255, 0.7) 0 9%, transparent 10%),
+        radial-gradient(circle at 82% 70%, rgba(255, 255, 255, 0.35) 0 16%, transparent 17%),
+        radial-gradient(circle at 60% 15%, rgba(255, 255, 255, 0.45) 0 6%, transparent 7%),
+        linear-gradient(150deg, var(--rosa-claro) 0%, var(--rosa) 100%);
+}
+
+.loja__info {
+    position: relative;
+    margin-top: -28px;
+    padding: 0 16px 18px;
+    border-radius: 24px 24px 0 0;
+    background: var(--fundo);
+    text-align: center;
+}
+
+/* O logo é quadrado; recortado em círculo, vira um selo */
+.loja__logo {
+    width: 104px;
+    height: 104px;
+    margin: -56px auto 10px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow:
+        0 0 0 4px var(--fundo),
+        var(--sombra);
+}
+
+.loja__nome {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: 1.9rem;
+    line-height: 1.1;
+    color: var(--magenta);
+}
+
+.loja__desc {
+    margin-top: 4px;
+    color: var(--texto-suave);
+    font-size: 0.92rem;
+}
+
+.loja__chips {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: var(--faixa);
+    color: var(--magenta);
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.chip--destaque {
+    background: var(--magenta);
+    color: #fff;
+}
+
+.chip--destaque .cursiva {
+    font-size: 1.35rem;
+    line-height: 0.6;
+    margin-left: 2px;
+}
+
+.chip--mini {
+    padding: 2px 8px;
+    font-size: 0.72rem;
+}
+
+.loja__insta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: var(--toque);
+    margin-top: 6px;
+    padding: 0 12px;
+    color: var(--magenta);
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-decoration: none;
+}
+
+.loja__insta svg {
+    width: 18px;
+    height: 18px;
+}
+
+.loja__insta:hover span {
+    text-decoration: underline;
+}
+
+/* ===== Abas fixas ===== */
+
+.abas {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: rgba(255, 255, 255, 0.94);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 1px 0 var(--divisor);
+}
+
+.aba {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 50px;
+    color: var(--texto-suave);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+/* Sublinhado magenta que "cresce" na aba ativa */
+.aba::after {
+    content: '';
+    position: absolute;
+    left: 22%;
+    right: 22%;
+    bottom: 0;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+    background: var(--magenta);
+    transform: scaleX(0);
+    transition: transform 0.3s var(--mola);
+}
+
+.aba:hover,
+.aba.ativa {
+    color: var(--magenta);
+}
+
+.aba.ativa {
+    font-weight: 800;
+}
+
+.aba.ativa::after {
+    transform: scaleX(1);
+}
+
+/* ===== Seções ===== */
+
+.conteudo {
+    padding: 4px 0 8px;
+}
+
+.secao {
+    padding: 22px 16px 6px;
+    scroll-margin-top: 50px; /* para o título não ficar escondido atrás das abas */
+}
+
+.secao__titulo {
+    font-weight: 900;
+    font-size: 1.3rem;
+    letter-spacing: -0.01em;
+}
+
+.secao__nota {
+    margin-top: 2px;
+    color: var(--texto-suave);
+    font-size: 0.88rem;
+}
+
+.carregando,
+.erro {
+    padding: 24px 0;
+    text-align: center;
+    color: var(--texto-suave);
+}
+
+.erro {
+    margin-top: 12px;
+    padding: 16px;
+    border-radius: var(--raio);
+    background: var(--faixa);
+    color: var(--magenta);
+}
+
+/* ===== Linha de produto ===== */
+
+.lista {
+    margin-top: 6px;
+}
+
+.produto {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--divisor);
+}
+
+.produto:last-child {
+    border-bottom: 0;
+}
+
+.produto__texto {
+    flex: 1;
+    min-width: 0;
+}
+
+.produto__nome {
+    font-size: 1.04rem;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+/* O botão cobre a linha inteira: tocar em qualquer parte abre o montador */
+.produto__abrir {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-weight: inherit;
+    text-align: left;
+    color: var(--texto);
+}
+
+.produto__abrir::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+}
+
+.produto__abrir:focus-visible {
+    outline: none;
+}
+
+.produto__abrir:focus-visible::after {
+    outline: 3px solid var(--magenta);
+    outline-offset: 2px;
+}
+
+.produto:hover .produto__abrir {
+    color: var(--magenta);
+}
+
+.produto__desc,
+.produto__detalhe {
+    margin-top: 4px;
+    color: var(--texto-suave);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.produto__desc {
+    font-size: 0.88rem;
+}
+
+.produto__detalhe {
+    margin-top: 6px;
+    font-size: 0.8rem;
+}
+
+.produto__rodape {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.produto__preco {
+    color: var(--magenta);
+    font-weight: 800;
+}
+
+.produto__preco small {
+    font-weight: 600;
+    font-size: 0.78rem;
+    color: var(--texto-suave);
+}
+
+/* Foto quadrada (ou espaço reservado enquanto não há foto) */
+.produto__midia {
+    flex: none;
+    width: 112px;
+    height: 112px;
+    border-radius: var(--raio);
+    overflow: hidden;
+    box-shadow: var(--sombra);
+}
+
+.produto__foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reserva {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    background:
+        radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.75) 0 12%, transparent 13%),
+        linear-gradient(150deg, #fbeff2 0%, var(--rosa) 100%);
+    color: #fff;
+}
+
+.reserva svg {
+    width: 40%;
+    max-width: 64px;
+    filter: drop-shadow(0 4px 8px rgba(138, 26, 82, 0.18));
+}
+
+.reserva span {
+    font-family: var(--fonte-cursiva);
+    color: var(--magenta);
+    opacity: 0.75;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+/* ===== Infos ===== */
+
+.infos {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0;
+}
+
+.info {
+    display: flex;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--divisor);
+}
+
+.info:last-child {
+    border-bottom: 0;
+}
+
+.info__icone {
+    flex: none;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--faixa);
+    color: var(--rosa);
+}
+
+.info__icone svg {
+    width: 20px;
+    height: 20px;
+}
+
+.info h3 {
+    font-size: 0.98rem;
+    font-weight: 800;
+}
+
+.info p {
+    margin-top: 2px;
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+}
+
+.contatos {
+    margin-top: 18px;
+    padding: 18px 16px;
+    border-radius: 20px;
+    background: var(--faixa);
+    text-align: center;
+}
+
+.contatos__titulo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.25rem;
+    color: var(--magenta);
+}
+
+.contatos__linha {
+    margin-top: 2px;
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+}
+
+.contatos__botoes {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* ===== Botões ===== */
+
+.botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 0 22px;
+    border: 2px solid var(--magenta);
+    border-radius: 14px;
+    background: var(--magenta);
+    color: #fff;
+    font-weight: 800;
+    text-decoration: none;
+    transition:
+        background 0.15s,
+        border-color 0.15s,
+        transform 0.1s;
+}
+
+.botao:hover {
+    background: var(--magenta-escuro);
+    border-color: var(--magenta-escuro);
+}
+
+.botao:active {
+    transform: scale(0.98);
+}
+
+.botao--contorno {
+    background: var(--fundo);
+    color: var(--magenta);
+}
+
+.botao--contorno:hover {
+    background: var(--rosa-claro);
+    border-color: var(--magenta);
+}
+
+/* ===== Rodapé ===== */
+
+.rodape {
+    padding: 24px 16px 32px;
+    text-align: center;
+    color: var(--texto-suave);
+    font-size: 0.8rem;
+}
